@@ -1,0 +1,71 @@
+{% extends "filmlist/wrapper.html" %}
+
+{% block content %}
+	<style>
+		.back{
+			background: white!important;
+			border: 3px solid #858585!important;
+			border-radius: 15px 15px;
+			margin-bottom: 1em;
+			height: fit-content;
+		}
+		.carousel {
+			display: block !important;
+		}
+	</style>
+	<div id="carousel" class="carousel container">
+    	<button class="arrow prev carousel-control-prev-icon"></button>
+    	<div class="gallery">
+    		<ul class="images">
+			{% for film in films %}
+				<li><a href="../../../filmlist/film.html/{{film.id}}"><img src="{{film.img_url}}"></a>
+					<a href="../../../filmlist/film.html/{{film.id}}"><h6>{{film.title}}</h6></a>
+				</li>
+        	{% endfor %}
+      		</ul>
+    	</div>
+    	<button class="arrow next carousel-control-next-icon"></button>
+	</div>
+
+	<div class="frame">
+		<div class="film_name">
+			<h1>{{movie.title}}</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div>
+					<img src="{{movie.img_url}}" class="film_img" style="
+						background-size: 100%;">
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="description">
+					<h6>Страна: {{movie.country}}</h6>
+					<hr> 
+					<h6>Жанр: {{movie.genre}}</h6>
+					<hr> 
+					<h6>Режиссер: {{movie.director}}</h6>
+					<hr> 
+					<h6>В главных ролях: {{movie.actors}}</h6>
+					<hr> 
+					<h6>Возраст: {{movie.pegi}}+</h6>
+					<hr> 
+					<h6>Длительность: {{movie.duration}}</h6>
+					<hr> 
+				</div>
+			</div>	
+		</div>
+		<div class="description">
+			<h4>Описание:</h4>
+			</br>
+			<h5>{{movie.description}}</h5>
+			<hr>
+			</br>
+			<h4>Трейлер:</h4>
+		</div>
+		<center>
+			<iframe width="889" height="500" src="{{movie.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+			</iframe>
+		</center>
+	</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "filmlist/wrapper.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron stylish-color-dark">
+			<form action="login" method="post" class="text-center p-5">
+				{% csrf_token %}
+				<input type="text" class="form-control mb-4" name="username" placeholder="Логин:">
+				<input type="password" class="form-control mb-4" name="password" placeholder="Пароль:">
+				<input type="submit" class="btn btn-success" style="background-color: black; border-color: #858585">
+            </form>
+        </div>
+    </div>
+{% endblock %}

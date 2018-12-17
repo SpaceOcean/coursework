@@ -1,0 +1,36 @@
+{% extends "filmlist/wrapper.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron stylish-color-dark">
+        <h1 align="center">Добавление фильма</h1>
+        <hr>
+        <div class="container">
+                <form action="addnew" method="post">
+                	{% csrf_token %}
+                    <label for="title">Название фильма:</label>
+                    <input class="form-control mb-3" id="title" type="text" name="title">
+                    <label for="img_url">Ссылка на изображение:</label>
+                    <input class="form-control mb-3" id="img_url" type="text" name="img_url">
+                    <label for="video">Ссылка на тейлер:</label>
+                    <input class="form-control mb-3" id="video" type="text" name="video">
+                    <label for="country">Страна:</label>
+                    <input class="form-control mb-3" id="country" type="text" name="country">
+                    <label for="genre">Жанр:</label>
+                    <input class="form-control mb-3" id="genre" type="text" name="genre">
+                    <label for="director">Режиссёр:</label>
+                    <input class="form-control mb-3" id="director" type="text" name="director">
+                    <label for="actors">Главные актёры:</label>
+                    <input class="form-control mb-3" id="actors" type="text" name="actors">
+                    <label for="description">Описание:</label>
+                    <input class="form-control mb-3" id="description" type="text" name="description">
+                    <label for="pegi">Возрастное ограничение:</label>
+                    <input class="form-control mb-3" id="pegi" type="text" name="pegi">
+                    <label for="duration">Продолжительность:</label>
+                    <input class="form-control mb-3" id="duration" type="text" name="duration">
+                    <input type="submit" class="btn btn-success" style="background-color: black; border-color: #858585">
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

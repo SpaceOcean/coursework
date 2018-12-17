@@ -1,0 +1,28 @@
+{% extends "filmlist/wrapper.html" %}
+
+{% block content %}
+<div class="row frame" >
+	{% for movie in films %}
+		<div class="col-md-3 centered">
+			<div class="block">
+				<div class="background" style="background: url({{movie.img_url}});
+				background-size: 100%;">
+				</div>
+				<div class="content">
+					<div class="button">
+							<a href="film.html/{{movie.id}}">
+								<h4><center>Подробнее</center></h4>
+							</a>	
+					</div>
+					<div class="movie_title centered">
+						<a href="film.html/{{movie.id}}">
+							<h5><center>{{movie.title}}</center></h5>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
