@@ -16,6 +16,31 @@ def filmpage(request, film_id):
     for i in db_json:
         if i["id"]==film_id:
             return render(request, 'filmlist/film.html/', {'movie': i, 'films': db_json})
+def addnewfilm(request):
+    if request.POST:
+        database = open('database.json')
+        db = database.read()
+        database.close()
+        db_json = json.loads(db)
+        film_id = db_json[-1]["id"] + 1
+        new_film = {
+            "id": film_id,
+            "title": request.POST.get("title"),
+            "img_url": request.POST.get("img_url"),
+            "video": request.POST.get("video"),
+            "country": request.POST.get("country"),
+            "genre": request.POST.get("genre"),
+            "director": request.POST.get("director"),
+            "actors": request.POST.get("actors"),
+            "description": request.POST.get("description"),
+            "pegi": request.POST.get("pegi"),
+            "duration": request.POST.get("duration")
+        }
+        db_json.append(new_film)
+        database = open('database.json', 'w').write(json.dumps(db_json))
+
+    return render(request, 'admin/admin.html')
+
 def addnew(request):
     if request.POST:
         database = open('database.json')
@@ -38,6 +63,19 @@ def addnew(request):
         }
         db_json.append(new_film)
         database = open('database.json', 'w').write(json.dumps(db_json))
+    return render(request, 'admin/moderator.html')
+def addnewmoderator(request):
+    if request.POST:
+        database = open('users.json')
+        db = database.read()
+        database.close()
+        db_json = json.loads(db)
+        new_moderator = {
+            "login": request.POST.get("login"),
+            "password": request.POST.get("password"),
+            "status": 0       }
+        db_json.append(new_moderator)
+        database = open('users.json', 'w').write(json.dumps(db_json))
     return render(request, 'admin/admin.html')
 
 def login(request):
@@ -50,7 +88,9 @@ def login(request):
                 db = database.read()
                 database.close()
                 db_json = json.loads(db)
-                return render(request, 'admin/admin.html')
-            else:
-                return render(request, 'admin/error.html')
+                if i['status']:
+                    return render(request, "admin/admin.html")
+                else:
+                    return render(request, "admin/moderator.html")
+        return render(request, 'admin/error.html')
     return render(request, 'admin/login.html')

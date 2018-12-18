@@ -3,24 +3,11 @@
 {% block content %}
 <div class="container">
     <div class="jumbotron stylish-color-dark">
+        <h1 align="center">Добавление фильма</h1>
         <hr>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2 align="center">Добавление нового модератора</h2>
-                    <form action="addnewmoderator" method="post">
-                    {% csrf_token %}
-                    <label for="login">Введите логин:</label>
-                    <input class="form-control mb-3" id="login" type="text" name="login">
-                    <label for="password">Введите пароль:</label>
-                    <input class="form-control mb-3" id="password" type="text" name="password">
-                    <input type="submit" class="btn btn-success" style="background-color: black; border-color: #858585">
-                </form>   
-                </div>
-                <div class="col-md-6">
-                    <h2 align="center">Добавление фильма</h2>
-                <form action="addnewfilm" method="post">
-                    {% csrf_token %}
+                <form action="addnew" method="post">
+                	{% csrf_token %}
                     <label for="title">Название фильма:</label>
                     <input class="form-control mb-3" id="title" type="text" name="title">
                     <label for="img_url">Ссылка на изображение:</label>
@@ -43,8 +30,6 @@
                     <input class="form-control mb-3" id="duration" type="text" name="duration">
                     <input type="submit" class="btn btn-success" style="background-color: black; border-color: #858585">
                 </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>
